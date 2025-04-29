@@ -2,7 +2,7 @@ package Agentes;
 
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
-import jade.domain.introspection.ACLMessage;
+// import jade.domain.introspection.ACLMessage;
 
 public class Ag2 extends Agent{
 
