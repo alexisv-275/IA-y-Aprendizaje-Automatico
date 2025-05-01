@@ -1,5 +1,5 @@
-import Agentes.Ag1;
-import Agentes.Ag2;
+// import Agentes.Ag1;
+// import Agentes.Ag2;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
 import jade.wrapper.AgentContainer;

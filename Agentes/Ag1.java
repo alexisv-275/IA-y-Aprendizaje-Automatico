@@ -1,6 +1,7 @@
-package Agentes;
+// package Agentes;
 
-import Mensajes.Mensaje;
+// import Mensajes.Mensaje;
+// import Modelo.Cliente;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
@@ -30,7 +31,16 @@ public class Ag1 extends Agent{
         @Override
         public void action() {
             System.out.println(getName());
-            Mensaje.enviarMensaje(getAgent(), "Ag2", "Hola", ACLMessage.INFORM, "AG1-AG2");
+            // Mensaje.enviarMensaje(getAgent(), "Ag2", "Hola", ACLMessage.REQUEST, "AG1-AG2");
+
+            Cliente c1 = new Cliente(1,2,50, 25, 20, 21.2,  100.5, 55.25); 
+
+            Mensaje.enviarMensajeObj(getAgent(), "Ag2", c1, ACLMessage.REQUEST, "AG1-AG2");
+
+    
+
+            ACLMessage acl = blockingReceive(); 
+            System.out.println(acl);
 
         }
 
