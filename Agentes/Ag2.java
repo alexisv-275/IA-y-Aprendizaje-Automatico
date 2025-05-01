@@ -34,6 +34,7 @@ public class Ag2 extends Agent{
         public void action() {
 
             //Mantiene al agente en espera
+            //Este método bloquea la ejecución del agente hasta que llega un mensaje, y cuando esto ocurre, asigna el mensaje recibido a una instancia de la clase ACLMessage.
             jade.lang.acl.ACLMessage acl = blockingReceive();
 
             try {
