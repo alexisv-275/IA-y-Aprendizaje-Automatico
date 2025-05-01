@@ -39,7 +39,9 @@ public class Contenedor {
             //No hay control de concurrencia
 
             //Se debe crear primero el agente que va a recibir (RECEPTOR)
-            agentContenedor.createNewAgent("Ag2", Ag2.class.getName(), null).start();  
+
+            //Pasarle un conocimiento
+            agentContenedor.createNewAgent("Ag2", Ag2.class.getName(), new Object[]{agentContenedor, 0}).start();  
             agentContenedor.createNewAgent("Ag1", Ag1.class.getName(), null).start();
             
         } catch (StaleProxyException e) {

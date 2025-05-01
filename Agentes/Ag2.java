@@ -1,13 +1,15 @@
 // package Agentes;
 
 // import Mensajes.Mensaje;
-// import Modelo.Cliente;
+import Modelo.Cliente;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 // import jade.core.behaviours.CyclicBehaviour;
 // import jade.domain.introspection.ACLMessage;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
+import jade.wrapper.AgentContainer;
+import jade.wrapper.StaleProxyException;
 
 
 public class Ag2 extends Agent{
@@ -22,7 +24,20 @@ public class Ag2 extends Agent{
     // Ultimo suspiro del agente para liberar recursos del agente
     @Override
     protected void takeDown() {
-        System.out.println("Nooooo");
+        //Obtener conocimiento --> getArguments()
+        AgentContainer contenedorAgentes = (AgentContainer)getArguments()[0];
+
+        //Obtener ID del agente
+        int i= (int)getArguments()[1];
+        i++;
+
+        //Darle a los agente hijos el contenedor de agentes y el ID del agente padre
+        try {
+            contenedorAgentes.createNewAgent("Agh" + i, Agh.class.getName(), new Object[]{contenedorAgentes, i}).start();
+        } catch (StaleProxyException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     class Comportamiento extends Behaviour {
