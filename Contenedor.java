@@ -1,5 +1,4 @@
-// import Agentes.Ag1;
-// import Agentes.Ag2;
+import Agentes.*;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
 import jade.wrapper.AgentContainer;
@@ -41,8 +40,13 @@ public class Contenedor {
             //Se debe crear primero el agente que va a recibir (RECEPTOR)
 
             //Pasarle un conocimiento
-            agentContenedor.createNewAgent("Ag2", Ag2.class.getName(), new Object[]{agentContenedor, 0}).start();  
+            agentContenedor.createNewAgent("Ag5", Ag5.class.getName(), new Object[]{agentContenedor}).start();
+            agentContenedor.createNewAgent("Ag3", Ag3.class.getName(), null).start();
+            agentContenedor.createNewAgent("Ag4", Ag4.class.getName(), null).start();
+            agentContenedor.createNewAgent("Ag2", Ag2.class.getName(), null).start();
             agentContenedor.createNewAgent("Ag1", Ag1.class.getName(), null).start();
+
+            // agentContenedor.createNewAgent("Ag2", Ag2.class.getName(), new Object[]{agentContenedor, 0}).start();  
             
         } catch (StaleProxyException e) {
             e.printStackTrace();
