@@ -11,7 +11,7 @@ import jade.wrapper.StaleProxyException;
 
 public class Agh extends Agent{
 
-private int myID; // ID único del agente
+private int id; 
 private AgentContainer contenedorAgentes;
 
 public static int nroHijoAgh = 0; 
@@ -20,9 +20,9 @@ public static int nroHijoAgh = 0;
  protected void setup() {
 
     contenedorAgentes = (AgentContainer) getArguments()[0];
-     myID = (int) getArguments()[1];
+    id = (int) getArguments()[1];
 
-    System.out.println(getLocalName() + " con ID: " + myID + " está vivo.");
+    System.out.println(getLocalName() + " con ID: " +  id + " está vivo.");
     addBehaviour(new Comportamiento());
  }
 
@@ -33,7 +33,7 @@ public static int nroHijoAgh = 0;
      System.out.println(getLocalName() + " se va a morir.");
 
     try {
-        int siguienteID = myID + 1;
+        int siguienteID =  id + 1;
         String nuevoNombre = "Agh" + siguienteID;
         contenedorAgentes.createNewAgent(nuevoNombre, Agh.class.getName(), new Object[]{contenedorAgentes, siguienteID}).start();
         System.out.println("Nuevo agente creado: " + nuevoNombre);
@@ -54,11 +54,12 @@ public static int nroHijoAgh = 0;
 
 
          // Enviar mensaje a Ag1
-         Mensaje.enviarMensaje(getAgent(), "Ag1", "Hola AG1, te saluda " + getLocalName(), ACLMessage.REQUEST, "AGh-AG1-" + myID);
+         Mensaje.enviarMensaje(getAgent(), "Ag1", "Hola AG1, te saluda " + getLocalName(), ACLMessage.REQUEST, "AGh-AG1-" +  id);
 
          // Esperar respuesta
          ACLMessage acl = blockingReceive();
-         if (acl != null) {
+         String nombreAgh = acl.getSender().getLocalName();
+         if (acl != null && acl.getConversationId().startsWith("AG1-" + nombreAgh)) {
              System.out.println(getLocalName() + " recibió respuesta: " + acl.getContent());
              done = true;
              doDelete(); // Se elimina

@@ -35,3 +35,7 @@ A1 -> comunica a Ah
 
 agente 1 se tiene que comunicar con Ahi 
 
+
+Lista que recibe mensajes y valida id de las conversaciones
+AG1 -> validar recibir mensaje con idConversacion
++2 comportamientos (uno puede ir dentro del action)
